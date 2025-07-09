@@ -80,12 +80,21 @@ const Contact: React.FC = () => {
               
               <div className="space-y-4">
                 <a
-                  href="https://wa.me/201014673656?text=Hi! I'm interested in getting a portfolio for $150"
+                  href="https://wa.me/201014673656?text=Hi! I'm interested in getting a portfolio for $100 (sale price from $150)"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center"
                 >
-                  Get Portfolio for $150
+                  Get Portfolio for $100 (SALE)
+                </a>
+                
+                <a
+                  href="https://wa.me/201014673656?text=Hi! I'm a student interested in getting a portfolio for $10"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center"
+                >
+                  Student Portfolio for $10
                 </a>
                 
                 <a

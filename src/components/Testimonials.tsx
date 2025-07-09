@@ -4,32 +4,28 @@ import { Star, Quote } from 'lucide-react';
 const Testimonials: React.FC = () => {
   const testimonials = [
     {
-      name: "Sarah Johnson",
-      role: "Data Analyst, TechCorp",
-      image: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=400",
+      name: "Ahmed M.",
+      role: "Data scientest",
       rating: 5,
-      testimonial: "VerseBi transformed our data reporting process. The Power BI dashboards they created saved us 15 hours per week and provided insights we never had before. Absolutely fantastic work!"
+      testimonial: "As a final year student, I struggled to showcase my projects in a professional way. VerseBi helped me build a clean and modern portfolio that really highlights my data analysis skills. It made a huge difference in my internship interviews. I finally had something I was proud to share."
     },
     {
-      name: "Michael Chen",
-      role: "BI Consultant",
-      image: "https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=400",
+      name: "Hamood El.",
+      role: "HR Practitioner at PDO",
       rating: 5,
-      testimonial: "The portfolio website VerseBi created for me has been a game-changer. I've received multiple client inquiries directly through my site. The $150 investment paid for itself within weeks!"
+      testimonial: "VerseBi are true experts in their field. Working with them across different projects has been an outstanding experience. The team is respectful, humble, solution oriented, and deeply knowledgeable. Their speed of delivery consistently exceeds expectations, and they're always ready with innovative dashboards and data analysis. I highly recommend them ,they are the go to partner if you're looking for data analysis and interactive dashboards."
     },
     {
-      name: "Emily Rodriguez",
-      role: "Operations Manager, LogiFlow",
-      image: "https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=400",
+      name: "Rami K.",
+      role: "Co‑founder at DND",
       rating: 5,
-      testimonial: "Their ERP integration expertise is unmatched. They connected our scattered data sources into one cohesive system. The automation they built saves us hours daily."
+      testimonial: "As a growing startup, we needed a clean and professional online portfolio to present our data projects and case studies. VerseBi delivered exactly what we needed  a custom domain, modern design, and fully responsive site, all up and running in just a couple of days. The process was fast, affordable, and completely hassle‑free. Highly recommend for any early‑stage team that wants to look professional from day one."
     },
     {
-      name: "David Park",
-      role: "Freelance Data Scientist",
-      image: "https://images.pexels.com/photos/1043471/pexels-photo-1043471.jpeg?auto=compress&cs=tinysrgb&w=400",
+      name: "Sara L.",
+      role: "Business Development Manager",
       rating: 5,
-      testimonial: "Professional, fast, and affordable. My portfolio website was live in 2 days with my custom domain. The design perfectly showcases my data visualization projects."
+      testimonial: "Choosing VerseBi completely changed how we see and use our data. Their team built custom dashboards tailored to our needs, automated complex reports, and integrated everything seamlessly with our existing systems. Fast delivery, clear communication, and a real eye for detail  highly recommended!"
     }
   ];
 
@@ -48,24 +44,15 @@ const Testimonials: React.FC = () => {
         <div className="grid lg:grid-cols-2 gap-8">
           {testimonials.map((testimonial, index) => (
             <div key={index} className="bg-gray-900 rounded-xl shadow-lg p-8 hover:shadow-xl transition-shadow duration-300 border border-gray-700">
-              <div className="flex items-center mb-6">
-                <img 
-                  src={testimonial.image} 
-                  alt={testimonial.name}
-                  className="w-16 h-16 rounded-full object-cover mr-4"
-                />
-                <div>
-                  <h4 className="text-xl font-semibold text-white">{testimonial.name}</h4>
-                  <p className="text-gray-400">{testimonial.role}</p>
-                </div>
+              <div className="mb-6">
+                <h4 className="text-xl font-bold text-white mb-2">{testimonial.name}</h4>
+                <p className="text-gray-400">{testimonial.role}</p>
               </div>
-              
               <div className="flex mb-4">
                 {[...Array(testimonial.rating)].map((_, i) => (
                   <Star key={i} size={20} className="text-yellow-400 fill-current" />
                 ))}
               </div>
-              
               <div className="relative">
                 <Quote size={24} className="text-green-500 mb-4" />
                 <p className="text-gray-300 italic leading-relaxed">

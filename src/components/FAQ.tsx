@@ -1,16 +1,8 @@
 import React, { useState } from 'react';
-import { ChevronDown, ChevronUp } from 'lucide-react';
+import { ChevronDown, ChevronUp, HelpCircle } from 'lucide-react';
 
 const FAQ: React.FC = () => {
-  const [openItems, setOpenItems] = useState<number[]>([]);
-
-  const toggleItem = (index: number) => {
-    setOpenItems(prev => 
-      prev.includes(index) 
-        ? prev.filter(i => i !== index)
-        : [...prev, index]
-    );
-  };
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const faqs = [
     {
@@ -19,6 +11,10 @@ const FAQ: React.FC = () => {
         {
           question: "What happens after the first year?",
           answer: "After the first year, you have several options: renew hosting for another year at a discounted rate, transfer the website to your own hosting provider, or upgrade to our premium management service. We'll contact you 30 days before expiration to discuss your options."
+        },
+        {
+          question: "What's the difference between regular and student portfolios?",
+          answer: "Regular portfolios ($100) include any domain extension and are designed for professionals. Student portfolios ($10) are specifically for students and include .me, .tech, or .software domains with a student-friendly template. Both include the same hosting and SSL features."
         },
         {
           question: "Can I customize the design?",
@@ -74,52 +70,72 @@ const FAQ: React.FC = () => {
     }
   ];
 
+  // Flatten questions for global index
+  const flatFaqs = faqs.flatMap((cat, catIdx) =>
+    cat.questions.map((q, qIdx) => ({
+      ...q,
+      category: cat.category,
+      globalIndex: faqs.slice(0, catIdx).reduce((acc, c) => acc + c.questions.length, 0) + qIdx
+    }))
+  );
+
   return (
-    <section className="py-20 bg-gray-900">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-white mb-4">
+    <section className="py-16 bg-gray-900">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-10">
+          <h2 className="text-3xl font-bold text-white mb-2">
             Frequently Asked <span className="text-green-500">Questions</span>
           </h2>
-          <p className="text-xl text-gray-300">
+          <p className="text-lg text-gray-300">
             Get answers to common questions about our services
           </p>
         </div>
 
-        <div className="space-y-8">
-          {faqs.map((category, categoryIndex) => (
-            <div key={categoryIndex} className="bg-gray-800 rounded-xl p-6 border border-gray-700">
-              <h3 className="text-2xl font-bold text-white mb-6 text-center">
-                {category.category}
-              </h3>
-              
-              <div className="space-y-4">
-                {category.questions.map((faq, index) => {
-                  const globalIndex = categoryIndex * 10 + index;
-                  const isOpen = openItems.includes(globalIndex);
-                  
-                  return (
-                    <div key={index} className="bg-gray-900 rounded-lg shadow-sm border border-gray-600">
-                      <button
-                        onClick={() => toggleItem(globalIndex)}
-                        className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-800 transition-colors duration-200"
-                      >
-                        <span className="font-semibold text-white">{faq.question}</span>
-                        {isOpen ? (
-                          <ChevronUp size={20} className="text-green-500" />
-                        ) : (
-                          <ChevronDown size={20} className="text-green-500" />
-                        )}
-                      </button>
-                      
-                      {isOpen && (
-                        <div className="px-6 pb-4">
-                          <p className="text-gray-300 leading-relaxed">{faq.answer}</p>
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
+        <div className="space-y-4">
+          {flatFaqs.map((faq, idx) => (
+            <div
+              key={idx}
+              className="bg-gray-800 border border-gray-700 rounded-xl shadow-lg transition-all duration-300 hover:shadow-2xl"
+            >
+              <button
+                onClick={() => setOpenIndex(openIndex === faq.globalIndex ? null : faq.globalIndex)}
+                className="w-full flex justify-between items-center px-6 py-4 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-green-400 bg-gray-800 hover:bg-gray-700 transition-colors duration-200 rounded-t-xl"
+                aria-expanded={openIndex === faq.globalIndex}
+                aria-controls={`faq-panel-${faq.globalIndex}`}
+              >
+                <div className="flex items-center gap-3">
+                  <HelpCircle size={20} className="text-green-400 flex-shrink-0" />
+                  <span className="font-medium text-white text-base">
+                    <span className="inline-block bg-green-500/20 text-green-400 text-xs px-2 py-1 rounded mr-2 align-middle font-semibold">
+                      {faq.category}
+                    </span>
+                    {faq.question}
+                  </span>
+                </div>
+                {openIndex === faq.globalIndex ? (
+                  <ChevronUp size={22} className="text-green-500" />
+                ) : (
+                  <ChevronDown size={22} className="text-green-500" />
+                )}
+              </button>
+              <div
+                style={{
+                  maxHeight: openIndex === faq.globalIndex ? 500 : 0,
+                  opacity: openIndex === faq.globalIndex ? 1 : 0,
+                  transition: 'max-height 0.4s cubic-bezier(0.4,0,0.2,1), opacity 0.3s',
+                  overflow: 'hidden',
+                  background: openIndex === faq.globalIndex ? '#111827' : 'transparent',
+                  borderBottomLeftRadius: openIndex === faq.globalIndex ? '0.75rem' : 0,
+                  borderBottomRightRadius: openIndex === faq.globalIndex ? '0.75rem' : 0,
+                }}
+                id={`faq-panel-${faq.globalIndex}`}
+                aria-hidden={openIndex !== faq.globalIndex}
+              >
+                <div className="px-6 pb-4 pt-2">
+                  <p className="text-gray-300 leading-relaxed text-sm">
+                    {faq.answer}
+                  </p>
+                </div>
               </div>
             </div>
           ))}
