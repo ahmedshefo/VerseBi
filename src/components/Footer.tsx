@@ -27,7 +27,7 @@ const Footer: React.FC<FooterProps> = ({ onPrivacyPolicyClick, onTermsOfServiceC
             <div className="space-y-2">
               <div className="flex items-center">
                 <Mail size={20} className="text-green-400 mr-3" />
-                <span className="text-gray-400">a.shefoo3333@gmail.com</span>
+                <span className="text-gray-400">Sales@versebi.me</span>
               </div>
               <div className="flex items-center">
                 <Phone size={20} className="text-green-400 mr-3" />

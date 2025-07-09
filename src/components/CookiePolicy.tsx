@@ -75,10 +75,10 @@ const CookiePolicy: React.FC<CookiePolicyProps> = ({ onBack }) => {
               <div className="flex items-center text-green-400">
                 <Mail size={20} className="mr-2" />
                 <a 
-                  href="mailto:a.shefoo3333@gmail.com" 
+                  href="mailto:support@versebi.me" 
                   className="hover:text-green-300 transition-colors duration-200"
                 >
-                  a.shefoo3333@gmail.com
+                  support@versebi.me
                 </a>
               </div>
             </section>

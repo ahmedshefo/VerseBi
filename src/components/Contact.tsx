@@ -53,7 +53,7 @@ const Contact: React.FC = () => {
                   <Mail size={24} className="text-green-400 mr-4" />
                   <div>
                     <p className="text-white font-semibold">Email</p>
-                    <p className="text-gray-300">a.shefoo3333@gmail.com</p>
+                    <p className="text-gray-300">Sales@versebi.me</p>
                   </div>
                 </div>
                 
@@ -110,7 +110,7 @@ const Contact: React.FC = () => {
               </li>
               <li className="flex items-start gap-3">
                 <span className="w-2 h-2 bg-green-400 rounded-full mt-2"></span>
-                <span><strong>Email support:</strong> a.shefoo3333@gmail.com</span>
+                <span><strong>Email support:</strong> support@versebi.me</span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="w-2 h-2 bg-green-400 rounded-full mt-2"></span>
@@ -131,7 +131,7 @@ const Contact: React.FC = () => {
             </ul>
             <div className="mt-auto flex flex-col gap-4">
               <a
-                href="mailto:a.shefoo3333@gmail.com?subject=Contact%20from%20VerseBi%20Website"
+                href="mailto:Sales@versebi.me?subject=Contact%20from%20VerseBi%20Website"
                 className="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center text-lg gap-2"
               >
                 <Mail size={20} className="mr-2" />
