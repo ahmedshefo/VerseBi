@@ -80,8 +80,14 @@ const Portfolio: React.FC = () => {
 
       {/* Modal */}
       {selected && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70">
-          <div className="bg-gray-900 rounded-xl shadow-2xl max-w-lg w-full mx-4 relative animate-fade-in">
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70"
+          onClick={handleCloseModal}
+        >
+          <div
+            className="bg-gray-900 rounded-xl shadow-2xl max-w-lg w-full mx-4 relative animate-fade-in"
+            onClick={e => e.stopPropagation()}
+          >
             <button
               onClick={handleCloseModal}
               className="absolute top-4 right-4 text-gray-400 hover:text-green-400 text-2xl font-bold focus:outline-none"
