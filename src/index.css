@@ -32,4 +32,43 @@
   .animate-fade-in {
     animation: fade-in 0.3s ease;
   }
+  
+  @keyframes infinity-rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  @keyframes infinity-pulse {
+    0%, 100% { 
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% { 
+      transform: scale(1.1);
+      opacity: 0.8;
+    }
+  }
+  
+  @keyframes infinity-glow {
+    0%, 100% { 
+      filter: drop-shadow(0 0 10px rgba(74, 222, 128, 0.6));
+      text-shadow: 0 0 20px rgba(74, 222, 128, 0.8);
+    }
+    50% { 
+      filter: drop-shadow(0 0 20px rgba(74, 222, 128, 0.9));
+      text-shadow: 0 0 30px rgba(74, 222, 128, 1);
+    }
+  }
+  
+  .animate-infinity {
+    animation: infinity-pulse 2s ease-in-out infinite;
+  }
+  
+  .animate-infinity-glow {
+    animation: infinity-glow 2s ease-in-out infinite;
+  }
+  
+  .animate-infinity-rotate {
+    animation: infinity-rotate 3s linear infinite;
+  }
 }

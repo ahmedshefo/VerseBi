@@ -11,12 +11,35 @@ import Footer from './components/Footer';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import TermsOfService from './components/TermsOfService';
 import CookiePolicy from './components/CookiePolicy';
+import LoadingIcon from './components/LoadingIcon';
 
 function App() {
   const [activeSection, setActiveSection] = useState('home');
   const [showPrivacyPolicy, setShowPrivacyPolicy] = useState(false);
   const [showTermsOfService, setShowTermsOfService] = useState(false);
   const [showCookiePolicy, setShowCookiePolicy] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Real loading bar animation
+    const loadingBar = document.getElementById('loading-bar');
+    let progress = 0;
+    
+    const interval = setInterval(() => {
+      progress += Math.random() * 15 + 5; // Random progress between 5-20%
+      if (progress >= 100) {
+        progress = 100;
+        clearInterval(interval);
+        setTimeout(() => setIsLoading(false), 300);
+      }
+      
+      if (loadingBar) {
+        loadingBar.style.width = progress + '%';
+      }
+    }, 200);
+
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -55,6 +78,19 @@ function App() {
   if (showCookiePolicy) {
     return (
       <CookiePolicy onBack={() => setShowCookiePolicy(false)} />
+    );
+  }
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-green-900 to-gray-900 flex items-center justify-center">
+        <div className="text-center">
+          <LoadingIcon />
+          <div className="mt-8 w-64 h-2 bg-gray-700 rounded-full overflow-hidden">
+            <div className="h-full bg-green-400 rounded-full transition-all duration-300 ease-out" style={{width: '0%'}} id="loading-bar"></div>
+          </div>
+        </div>
+      </div>
     );
   }
 
